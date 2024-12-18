@@ -3,7 +3,7 @@ import time
 
 # Function to introduce the game and the setting
 def intro():
-    print("Welcome to Resident Evil: The Escape.")
+    print("Welcome to 'The Escape'.")
     time.sleep(1)
     print("You are a survivor trapped in a haunted mansion.")
     time.sleep(1)
