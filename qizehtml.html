@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+        }
+        input {
+            padding: 10px;
+            width: 50px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Guess the Number Game</h1>
+    <p>I'm thinking of a number between 1 and 100.</p>
+    <input type="number" id="guess" min="1" max="100" placeholder="Your guess">
+    <button onclick="checkGuess()">Submit Guess</button>
+    <div id="result"></div>
+    <button onclick="resetGame()" style="display:none;" id="resetButton">Play Again</button>
+
+    <script>
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function checkGuess() {
+            const userGuess = Number(document.getElementById('guess').value);
+            attempts++;
+            const resultDiv = document.getElementById('result');
+
+            if (userGuess < 1 || userGuess > 100) {
+                resultDiv.innerHTML = "Please enter a number between 1 and 100.";
+            } else if (userGuess === randomNumber) {
+                resultDiv.innerHTML = `Congratulations! You guessed the number ${randomNumber} in ${attempts} attempts.`;
+                document.getElementById('resetButton').style.display = 'inline';
+            } else if (userGuess < randomNumber) {
+                resultDiv.innerHTML = "Too low! Try again.";
+            } else {
+                resultDiv.innerHTML = "Too high! Try again.";
+            }
+        }
+
+        function resetGame() {
+            randomNumber = Math.floor(Math.random() * 100) + 1;
+            attempts = 0;
+            document.getElementById('guess').value = '';
+            document.getElementById('result').innerHTML = '';
+            document.getElementById('resetButton').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
